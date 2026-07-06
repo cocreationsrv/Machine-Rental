@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">商品詳細 ｜ 共創レンタル</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="wrap">
+  <p class="breadcrumb" id="breadcrumb"></p>
+</div>
+
+<section class="section" style="padding-top:6px;">
+  <div class="wrap">
+    <div class="pd-grid" id="pd-root"><!-- rendered by JS --></div>
+
+    <div class="pd-tabs" id="pd-tabs"></div>
+    <div id="pd-tabpanels"></div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">RELATED</p>
+        <h2>あわせて試したい商品</h2>
+      </div>
+    </div>
+    <div class="product-grid" id="related-grid" style="grid-template-columns:repeat(3,1fr);max-width:760px;"></div>
+  </div>
+</section>
+
+<!-- Modal A: period & quantity confirmation (before adding to cart) -->
+<div class="pm-overlay" id="period-modal">
+  <div class="pm-modal">
+    <button class="pm-close" id="period-modal-close" data-icon="close"></button>
+    <div class="pm-bar">期間と数量を選ぶ</div>
+    <div class="pm-body">
+      <p class="pm-product-line" id="pm-product-name"></p>
+      <p class="pm-price-line" id="pm-price-line"></p>
+
+      <div class="pm-grid">
+        <div class="pm-col">
+          <h5>レンタル期間</h5>
+          <p class="pm-loc-note">
+            <select class="pref-select" id="pm-pref-select"></select>
+            の場合、最短で<b id="pm-earliest-label"></b>にお届け可能です
+          </p>
+          <div class="pm-date-row">
+            <button type="button" class="pm-date-btn" id="pm-delivery-btn">
+              <small>お届け日を変更する</small>
+              <span class="val" id="pm-delivery-val"></span>
+            </button>
+            <span class="pm-date-arrow">▶</span>
+            <button type="button" class="pm-date-btn" id="pm-return-btn" disabled>
+              <small id="pm-return-label-small">返送日</small>
+              <span class="val" id="pm-return-val"></span>
+            </button>
+          </div>
+          <div class="pm-mini-cal" id="pm-mini-cal"></div>
+          <p class="pm-period-summary" id="pm-period-summary"></p>
+          <p class="pm-period-notes">
+            ✓ 通常、レンタル中でも延長手続きが可能です<br>
+            ✓ 配送時間は注文手続きの途中で選べます
+          </p>
+        </div>
+        <div class="pm-col">
+          <h5>商品の点数</h5>
+          <div class="qty-row">
+            <button type="button" class="qty-btn" id="pm-qty-minus">−</button>
+            <span class="qty-value" id="pm-qty-value">1</span>
+            <button type="button" class="qty-btn" id="pm-qty-plus">＋</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pm-total-line">
+        <span>合計金額</span>
+        <b id="pm-total-value"></b>
+      </div>
+
+      <div class="pm-actions">
+        <button class="btn btn-primary" id="pm-add-cart"><span class="btn-icon" data-icon="cart"></span> カートに入れる</button>
+        <button class="btn btn-ghost" id="pm-close-without">カートに入れずに閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal B: self-service vs corporate consultation choice -->
+<div class="pm-overlay" id="choice-modal">
+  <div class="pm-modal pm-wide">
+    <button class="pm-close" id="choice-modal-close" data-icon="close"></button>
+    <div class="pm-body" style="padding-top:32px;">
+      <p class="pm-choice-title">お好きな方法でお見積り・ご相談が可能です</p>
+      <div class="choice-grid">
+        <div class="choice-card">
+          <div class="choice-img" style="background:linear-gradient(160deg,#E8F8F6,#CFEFEA);">
+            <span class="choice-tag">Webで完結</span>
+            <span data-icon="laptop"></span>
+          </div>
+          <div class="choice-body">
+            <p class="choice-eyebrow">商品が決まっている方・お急ぎの方へ</p>
+            <h4>自由に選んで注文する</h4>
+            <ul>
+              <li>見積書の発行だけなら会員登録は不要です</li>
+              <li>すべてWebで完結、請求書払いも利用可能</li>
+              <li>商品を選んだら1クリックで見積書発行</li>
+              <li>24時間いつでも注文可能、最短納期でお届け</li>
+            </ul>
+            <button class="btn btn-primary btn-sm" id="choice-self-btn">元の画面でお届け日を選択する</button>
+          </div>
+        </div>
+        <div class="choice-card">
+          <div class="choice-img" style="background:linear-gradient(160deg,#FDEEF1,#F8D6DD);">
+            <span data-icon="headset"></span>
+          </div>
+          <div class="choice-body">
+            <p class="choice-eyebrow">商品を相談したい方・大量注文の方へ</p>
+            <h4>法人担当者と相談する</h4>
+            <ul>
+              <li>用途に応じて担当者が個別にプランニング</li>
+              <li>複数商品の組み合わせも柔軟にご提案</li>
+              <li>サイト未掲載の商品でも相談可能</li>
+              <li>担当者が1営業日以内にお返事いたします</li>
+            </ul>
+            <button class="btn btn-outline btn-sm" id="choice-biz-btn">お見積り・お問い合わせ（無料）</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="app.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const product = getProduct(params.get("id")) || PRODUCTS[0];
+  document.getElementById("page-title").textContent = product.name + " ｜ 共創レンタル";
+  mountChrome("");
+
+  document.getElementById("breadcrumb").innerHTML =
+    `<a href="index.html">TOP</a> ／ <a href="index.html?cat=${CATEGORY_META[product.category].key}">${product.category}</a> ／ <span style="color:var(--dark);">${product.name}</span>`;
+
+  let state = { plan: "monthly", condition: "used", pref: "東京都", selectedDate: null };
+
+  const earliestDate = addDays(new Date(new Date().setHours(0,0,0,0)), 1 + (PREF_EXTRA_DAYS[state.pref] || 0));
+  state.selectedDate = earliestDate;
+
+  function currentPrice() {
+    if (state.plan === "monthly") return { amount: product.monthlySale || product.monthly, was: product.monthlySale ? product.monthly : null, unit: "月額" };
+    return { amount: product.onetime, was: null, unit: product.onetimeNights };
+  }
+
+  function renderPD() {
+    const price = currentPrice();
+    const cat = CATEGORY_META[product.category];
+    document.getElementById("pd-root").innerHTML = `
+      <div>
+        <div class="pd-gallery-main" style="background:linear-gradient(160deg, ${cat.bgFrom}, ${cat.bgTo});">
+          ${PRODUCT_ART[product.id]}
+        </div>
+        <div class="pd-thumbs">
+          ${[0,1,2,3].map(i => `<div class="pd-thumb ${i===0?"active":""}" data-thumb="${i}" style="background:${cat.bgFrom};">${PRODUCT_ART[product.id]}</div>`).join("")}
+        </div>
+      </div>
+      <div>
+        <div class="pd-badges">${productBadgeHTML(product)}${product.monthlySale ? '<span class="pbadge pbadge-sale">SALE</span>' : ""}</div>
+        <p class="pd-tagline">${product.tagline}</p>
+        <p class="pd-title">${product.name}</p>
+        <div class="pd-rating">${starRow(product.rating)} <b style="color:var(--dark);">${product.rating}</b>（${product.reviews}件のレビュー）　<span>${product.category}</span></div>
+
+        <div class="pd-price-box">
+          ${price.was ? `<span class="pd-price-was">${yen(price.was)}</span>` : ""}
+          <span class="pd-price">${yen(price.amount)}<small> / ${price.unit}</small></span>
+          ${product.monthlySale && state.plan === "monthly" ? `<div style="font-size:11px;color:var(--sale);font-weight:700;margin-top:4px;">キャンペーン価格　${product.saleUntil}まで</div>` : ""}
+          <div style="font-size:11.5px;color:var(--muted);margin-top:6px;">配送手数料 480円（返却時送料無料）</div>
+        </div>
+
+        <div class="pd-plan-toggle">
+          <div class="toggle-btn ${state.plan === "monthly" ? "active" : ""}" data-plan="monthly">
+            月額制プラン<small>${yen(product.monthlySale || product.monthly)} / 月〜</small>
+          </div>
+          <div class="toggle-btn ${state.plan === "onetime" ? "active" : ""}" data-plan="onetime">
+            ワンタイムプラン<small>${product.onetime ? yen(product.onetime) + " / " + product.onetimeNights : "選択できません"}</small>
+          </div>
+        </div>
+
+        ${product.newAvailable ? `
+        <div class="pd-condition">
+          <div class="cond-btn ${state.condition === "used" ? "active" : ""}" data-cond="used">点検済みリユース品</div>
+          <div class="cond-btn ${state.condition === "new" ? "active" : ""}" data-cond="new">新品</div>
+        </div>` : ""}
+
+        <div class="pd-note"><b>そのまま購入について：</b>レンタル期間中に気に入れば、マイページから追加料金をお支払いいただくだけでお手元の商品をそのままご購入いただけます（規定価格 − お支払済みレンタル料金相当分）。</div>
+        <div class="pd-note"><b>安心保証：</b>お客様に過失のない故障・破損は費用を一切請求しません。過失がある場合もご負担は都度上限2,000円までです。</div>
+      </div>
+      <div class="booking-widget">
+        <div class="booking-card">
+          <h4>お届け日と返送日を選ぶ</h4>
+          <div class="booking-location">
+            ${ICONS.truck}
+            <span>
+              <select class="pref-select" id="pref-select">${PREFS.map(p => `<option ${p===state.pref?"selected":""}>${p}</option>`).join("")}</select>
+              の場合、最短で<b id="earliest-label"></b>にお届け可能です
+            </span>
+          </div>
+          <div id="cal-mount"></div>
+          <div class="selected-date-line">選択中のお届け予定日：<b id="selected-date-label"></b>${state.plan === "onetime" && product.onetime ? `　／　返却予定日：<b id="return-date-label"></b>` : ""}</div>
+          <button class="reserve-btn" id="reserve-btn">${ICONS.cart} いますぐレンタル予約</button>
+          <button class="biz-quote-toggle" id="biz-toggle">法人の方向け・見積書の発行</button>
+          <p class="cancel-note">出荷直前まで<b>キャンセルも無料</b>です。<br>在庫があるうちにひとまずご予約ください。</p>
+          <div class="stock-line">${ICONS.check} 在庫あり・条件を満たせば即日出荷可能</div>
+        </div>
+      </div>
+    `;
+
+    document.querySelectorAll("[data-plan]").forEach(el => {
+      el.addEventListener("click", () => {
+        if (el.dataset.plan === "onetime" && !product.onetime) return;
+        state.plan = el.dataset.plan;
+        renderPD();
+      });
+    });
+    document.querySelectorAll("[data-cond]").forEach(el => {
+      el.addEventListener("click", () => { state.condition = el.dataset.cond; renderPD(); });
+    });
+    document.querySelectorAll("[data-thumb]").forEach(el => {
+      el.addEventListener("click", () => {
+        document.querySelectorAll("[data-thumb]").forEach(t => t.classList.remove("active"));
+        el.classList.add("active");
+      });
+    });
+
+    renderCalendarBlock();
+
+    document.getElementById("pref-select").addEventListener("change", (e) => {
+      state.pref = e.target.value;
+      const newEarliest = addDays(new Date(new Date().setHours(0,0,0,0)), 1 + (PREF_EXTRA_DAYS[state.pref] || 0));
+      if (state.selectedDate < newEarliest) state.selectedDate = newEarliest;
+      renderCalendarBlock();
+    });
+
+    document.getElementById("biz-toggle").addEventListener("click", openChoiceModal);
+
+    document.getElementById("reserve-btn").addEventListener("click", openPeriodModal);
+  }
+
+  function renderCalendarBlock() {
+    const earliest = addDays(new Date(new Date().setHours(0,0,0,0)), 1 + (PREF_EXTRA_DAYS[state.pref] || 0));
+    document.getElementById("earliest-label").textContent = fmtMD(earliest);
+    document.getElementById("cal-mount").innerHTML = calendarWidgetHTML(earliest, state.selectedDate);
+    document.getElementById("selected-date-label").textContent = fmtMD(state.selectedDate);
+    if (state.plan === "onetime" && product.onetime) {
+      const nights = parseInt(product.onetimeNights, 10) || 7;
+      const returnLabel = document.getElementById("return-date-label");
+      if (returnLabel) returnLabel.textContent = fmtMD(addDays(state.selectedDate, nights));
+    }
+    document.querySelectorAll(".cal-cell:not(.disabled)").forEach(cell => {
+      cell.addEventListener("click", () => {
+        state.selectedDate = new Date(cell.dataset.date + "T00:00:00");
+        renderCalendarBlock();
+      });
+    });
+  }
+  renderPD();
+
+  // ---- tabs: 商品説明 / 仕様 / レビュー ----
+  const TABS = [
+    { key: "desc", label: "商品説明" },
+    { key: "spec", label: "仕様" },
+    { key: "review", label: `レビュー（${product.reviews}）` },
+  ];
+  document.getElementById("pd-tabs").innerHTML = TABS.map((t,i) => `<div class="pd-tab ${i===0?"active":""}" data-tab="${t.key}">${t.label}</div>`).join("");
+
+  const breakdown = product.ratingBreakdown;
+  const total = breakdown.reduce((a,b)=>a+b,0);
+  document.getElementById("pd-tabpanels").innerHTML = `
+    <div class="pd-tabpanel active" data-panel="desc">
+      <p style="max-width:720px;font-size:13.5px;color:var(--text);line-height:1.9;">${product.desc}</p>
+    </div>
+    <div class="pd-tabpanel" data-panel="spec">
+      <table class="spec-table" style="max-width:640px;">
+        ${product.specs.map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join("")}
+      </table>
+    </div>
+    <div class="pd-tabpanel" data-panel="review">
+      <div class="reviews-layout">
+        <div class="rating-summary">
+          <div class="rating-big">${product.rating}</div>
+          <div class="stars">${starRow(product.rating)}</div>
+          <div class="rating-count">全${total}件のレビューによる平均</div>
+          ${ratingBarsHTML(breakdown)}
+        </div>
+        <div>${(product.reviewsList || []).map(r => reviewCardHTML(r)).join("")}</div>
+      </div>
+    </div>
+  `;
+  document.querySelectorAll("[data-tab]").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll("[data-tab]").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll("[data-panel]").forEach(p => p.classList.remove("active"));
+      tab.classList.add("active");
+      document.querySelector(`[data-panel="${tab.dataset.tab}"]`).classList.add("active");
+    });
+  });
+
+  // ---- related products ----
+  document.getElementById("related-grid").innerHTML = relatedProducts(product.id, 3).map(p => {
+    const cat = CATEGORY_META[p.category];
+    return `
+    <a class="product-card" href="product.html?id=${p.id}">
+      <div class="product-thumb" style="background:linear-gradient(160deg, ${cat.bgFrom}, ${cat.bgTo});">
+        ${productBadgeHTML(p)}
+        ${PRODUCT_ART[p.id]}
+      </div>
+      <div class="product-cat">${p.category}</div>
+      <p class="product-title">${p.name}</p>
+      <div class="product-rating">${starRow(p.rating)} ${p.rating}（${p.reviews}件）</div>
+      <div class="product-price-row"><span class="product-price">${yen(p.monthlySale || p.monthly)}<small>/月〜</small></span></div>
+    </a>`;
+  }).join("");
+
+  // ---- fill static icon placeholders inside the two modals ----
+  document.querySelectorAll("[data-icon]").forEach(el => {
+    if (!el.innerHTML) el.innerHTML = ICONS[el.dataset.icon] || "";
+  });
+
+  /* =========================================================
+     Modal A: 期間と数量を選ぶ (period & quantity confirmation)
+     ========================================================= */
+  state.qty = 1;
+  let pmMiniCalOpen = false;
+
+  function openPeriodModal() {
+    pmMiniCalOpen = false;
+    renderPeriodModal();
+    document.getElementById("period-modal").classList.add("open");
+  }
+  function closePeriodModal() {
+    document.getElementById("period-modal").classList.remove("open");
+  }
+
+  function renderPeriodModal() {
+    const price = currentPrice();
+    const earliest = addDays(new Date(new Date().setHours(0,0,0,0)), 1 + (PREF_EXTRA_DAYS[state.pref] || 0));
+    const isOnetime = state.plan === "onetime" && product.onetime;
+    const nights = isOnetime ? (parseInt(product.onetimeNights, 10) || 7) : null;
+    const returnDate = isOnetime ? addDays(state.selectedDate, nights) : null;
+
+    document.getElementById("pm-product-name").textContent = product.name;
+    document.getElementById("pm-price-line").innerHTML = `${yen(price.amount)}<small> ${state.plan === "monthly" ? "/ 月額（税込）" : "/ " + price.unit + "（税込）"}</small>`;
+
+    const prefSelect = document.getElementById("pm-pref-select");
+    prefSelect.innerHTML = PREFS.map(p => `<option ${p === state.pref ? "selected" : ""}>${p}</option>`).join("");
+    document.getElementById("pm-earliest-label").textContent = fmtMD(earliest);
+
+    document.getElementById("pm-delivery-val").textContent = fmtMD(state.selectedDate);
+    const returnBtn = document.getElementById("pm-return-btn");
+    if (isOnetime) {
+      document.getElementById("pm-return-label-small").textContent = "返送日";
+      document.getElementById("pm-return-val").textContent = fmtMD(returnDate);
+      returnBtn.style.visibility = "visible";
+    } else {
+      document.getElementById("pm-return-label-small").textContent = "返送日";
+      document.getElementById("pm-return-val").textContent = "月額プランは返却不要";
+      returnBtn.style.visibility = "visible";
+    }
+
+    document.getElementById("pm-period-summary").textContent = isOnetime
+      ? `${nights}泊${nights + 1}日の期間が選択されています`
+      : "月額制プラン（最低利用期間の縛りなし）が選択されています";
+
+    document.getElementById("pm-mini-cal").innerHTML = calendarWidgetHTML(earliest, state.selectedDate);
+    document.getElementById("pm-mini-cal").classList.toggle("open", pmMiniCalOpen);
+
+    document.getElementById("pm-qty-value").textContent = state.qty;
+    const unitTotal = price.amount * state.qty;
+    document.getElementById("pm-total-value").textContent = yen(unitTotal) + (state.plan === "monthly" ? " /月" : "");
+
+    // wire events (re-attached each render since innerHTML is rebuilt for the mini-cal only;
+    // buttons themselves are static, so listeners are added once via a guard flag)
+    document.querySelectorAll("#pm-mini-cal .cal-cell:not(.disabled)").forEach(cell => {
+      cell.addEventListener("click", () => {
+        state.selectedDate = new Date(cell.dataset.date + "T00:00:00");
+        renderPeriodModal();
+        renderCalendarBlock();
+      });
+    });
+  }
+
+  document.getElementById("period-modal-close").addEventListener("click", closePeriodModal);
+  document.getElementById("pm-close-without").addEventListener("click", closePeriodModal);
+  document.getElementById("period-modal").addEventListener("click", (e) => {
+    if (e.target.id === "period-modal") closePeriodModal();
+  });
+  document.getElementById("pm-delivery-btn").addEventListener("click", () => {
+    pmMiniCalOpen = !pmMiniCalOpen;
+    document.getElementById("pm-mini-cal").classList.toggle("open", pmMiniCalOpen);
+  });
+  document.getElementById("pm-pref-select").addEventListener("change", (e) => {
+    state.pref = e.target.value;
+    const ps = document.getElementById("pref-select");
+    if (ps) ps.value = state.pref;
+    const newEarliest = addDays(new Date(new Date().setHours(0,0,0,0)), 1 + (PREF_EXTRA_DAYS[state.pref] || 0));
+    if (state.selectedDate < newEarliest) state.selectedDate = newEarliest;
+    renderPeriodModal();
+    renderCalendarBlock();
+  });
+  document.getElementById("pm-qty-minus").addEventListener("click", () => {
+    state.qty = Math.max(1, state.qty - 1);
+    renderPeriodModal();
+  });
+  document.getElementById("pm-qty-plus").addEventListener("click", () => {
+    state.qty = Math.min(5, state.qty + 1);
+    renderPeriodModal();
+  });
+  document.getElementById("pm-add-cart").addEventListener("click", () => {
+    const price = currentPrice();
+    for (let i = 0; i < state.qty; i++) {
+      addToCart({
+        productId: product.id,
+        name: product.name,
+        icon: product.id,
+        planLabel: state.plan === "monthly" ? "月額制プラン" : "ワンタイムプラン",
+        condition: product.newAvailable ? (state.condition === "used" ? "点検済みリユース品" : "新品") : "点検済みリユース品",
+        price: price.amount,
+        unit: state.plan === "monthly" ? "月額" : product.onetimeNights,
+        deliveryDate: fmtMD(state.selectedDate),
+      });
+    }
+    closePeriodModal();
+    showToast(`カートに追加しました（お届け予定日：${fmtMD(state.selectedDate)}／数量${state.qty}点）`);
+  });
+
+  /* =========================================================
+     Modal B: お好きな方法でお見積り・ご相談が可能です (choice)
+     ========================================================= */
+  function openChoiceModal() {
+    document.getElementById("choice-modal").classList.add("open");
+  }
+  function closeChoiceModal() {
+    document.getElementById("choice-modal").classList.remove("open");
+  }
+  document.getElementById("choice-modal-close").addEventListener("click", closeChoiceModal);
+  document.getElementById("choice-modal").addEventListener("click", (e) => {
+    if (e.target.id === "choice-modal") closeChoiceModal();
+  });
+  document.getElementById("choice-self-btn").addEventListener("click", () => {
+    closeChoiceModal();
+    openPeriodModal();
+  });
+  document.getElementById("choice-biz-btn").addEventListener("click", () => {
+    closeChoiceModal();
+    showToast("法人担当窓口へのお問い合わせ方法をご案内します（デモ）");
+  });
+</script>
+</body>
+</html>

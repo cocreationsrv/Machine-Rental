@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カート ｜ 共創レンタル</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<div class="page-hero">
+  <div class="wrap">
+    <p class="kicker">CART</p>
+    <h1>カートのご確認</h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap" id="cart-wrap" style="display:grid;grid-template-columns:1.6fr 1fr;gap:32px;align-items:start;">
+    <div id="cart-list"></div>
+    <div class="summary-box">
+      <h4 style="margin-top:0;">お支払い金額（見積り）</h4>
+      <div id="summary-rows"></div>
+      <div class="summary-total"><span>合計（初回）</span><span id="summary-total">¥0</span></div>
+      <button class="btn btn-primary" id="checkout-btn" style="width:100%;margin-top:18px;">この内容で注文を確定する</button>
+      <p style="font-size:11px;color:var(--muted);margin-top:10px;">ご注文確定後、マイページからいつでもご返却・そのまま購入のお手続きができます。</p>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="app.js"></script>
+<script>
+  mountChrome("");
+
+  function renderCart() {
+    const cart = readCart();
+    const listEl = document.getElementById("cart-list");
+    const summaryEl = document.getElementById("summary-rows");
+    const totalEl = document.getElementById("summary-total");
+
+    if (cart.length === 0) {
+      listEl.innerHTML = `<div class="empty-state">
+        <p style="font-size:15px;font-weight:700;color:var(--dark);">カートは空です</p>
+        <p>商品一覧からレンタルしたい家電をお選びください。</p>
+        <a class="btn btn-primary" href="index.html">商品一覧を見る</a>
+      </div>`;
+      summaryEl.innerHTML = "";
+      totalEl.textContent = "¥0";
+      document.getElementById("checkout-btn").disabled = true;
+      return;
+    }
+
+    listEl.innerHTML = cart.map((item, i) => {
+      const p = getProduct(item.productId);
+      const cat = p ? CATEGORY_META[p.category] : null;
+      return `
+      <div class="cart-row">
+        <div class="thumb" style="background:${cat ? cat.bgFrom : "var(--cardbg)"};">${PRODUCT_ART[item.icon] || ""}</div>
+        <div class="grow">
+          <div class="name">${item.name}</div>
+          <div class="meta">${item.planLabel}　/　${item.condition}${item.deliveryDate ? `　/　お届け予定日 ${item.deliveryDate}` : ""}</div>
+          <button class="remove-btn" data-remove="${i}">削除</button>
+        </div>
+        <div class="price">${yen(item.price)}<div style="font-size:10.5px;font-weight:600;color:var(--muted);">/ ${item.unit}</div></div>
+      </div>`;
+    }).join("");
+
+    let deliveryFee = cart.length * 480;
+    let subtotal = cart.reduce((a, b) => a + b.price, 0);
+    summaryEl.innerHTML = `
+      <div class="summary-row"><span>商品レンタル料金（${cart.length}点）</span><span>${yen(subtotal)}</span></div>
+      <div class="summary-row"><span>配送手数料</span><span>${yen(deliveryFee)}</span></div>
+      <div class="summary-row"><span>返却送料</span><span>無料</span></div>
+    `;
+    totalEl.textContent = yen(subtotal + deliveryFee);
+    document.getElementById("checkout-btn").disabled = false;
+
+    listEl.querySelectorAll("[data-remove]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        removeFromCart(parseInt(btn.dataset.remove, 10));
+        updateCartBadge();
+        renderCart();
+      });
+    });
+  }
+
+  document.getElementById("checkout-btn").addEventListener("click", () => {
+    const cart = readCart();
+    if (cart.length === 0) return;
+    const orders = readOrders();
+    const today = new Date().toISOString().slice(0, 10);
+    cart.forEach((item) => {
+      orders.unshift({
+        id: "KS-" + Math.random().toString(36).slice(2, 8).toUpperCase(),
+        productId: item.productId,
+        name: item.name,
+        icon: item.icon,
+        planLabel: item.planLabel,
+        price: item.price,
+        status: "using",
+        orderedAt: today,
+      });
+    });
+    writeOrders(orders);
+    clearCart();
+    updateCartBadge();
+    location.href = "mypage.html?ordered=1";
+  });
+
+  renderCart();
+</script>
+</body>
+</html>

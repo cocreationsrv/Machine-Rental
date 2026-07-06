@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>共創レンタル ｜ 美容・キッチン・掃除家電のレンタル＆サブスク</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">RENTAL &amp; SUBSCRIPTION</span>
+      <h1>買う前に、試そう。<br>家電のレンタル・サブスク「共創レンタル」</h1>
+      <p class="lead">美容家電・キッチン家電・掃除家電を月額制またはワンタイムでレンタル。全国送料込み・コンビニ返却で、気軽に「お試し」できます。気に入ればそのままご購入も可能です。</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#products">商品を見る</a>
+        <a class="btn btn-outline" href="flow.html">ご利用の流れを見る</a>
+      </div>
+      <div class="hero-badges">
+        <span class="badge">✓ 返却時送料無料</span>
+        <span class="badge">✓ 最短翌日出荷</span>
+        <span class="badge">✓ 安心保証つき</span>
+        <span class="badge">✓ 途中でそのまま購入OK</span>
+      </div>
+    </div>
+    <div class="hero-showcase" id="hero-showcase"></div>
+  </div>
+</section>
+
+<div id="site-trust-anchor"></div>
+
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">LINEUP</p>
+        <h2 id="lineup-title">取扱商品</h2>
+        <p>厳選した美容・キッチン・掃除家電をラインナップ。商品を選んでプランをご確認ください。</p>
+      </div>
+    </div>
+    <div class="cat-chips" id="cat-chips"></div>
+    <div class="product-grid" id="product-grid"></div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">HOW TO USE</p>
+        <h2>ご利用は3ステップ</h2>
+      </div>
+    </div>
+    <div class="box-grid-3">
+      <div class="info-card">
+        <div class="icon-circle" data-icon="cart"></div>
+        <h4>1. ネット・アプリで注文</h4>
+        <p>プランとお届け日を選択したら注文完了。ご自宅に商品が届きます。</p>
+      </div>
+      <div class="info-card">
+        <div class="icon-circle" data-icon="home"></div>
+        <h4>2. ご利用開始</h4>
+        <p>万が一の故障・破損も安心保証でサポート。気に入ればそのままご購入も可能です。</p>
+      </div>
+      <div class="info-card">
+        <div class="icon-circle" data-icon="box"></div>
+        <h4>3. 返送してレンタル終了</h4>
+        <p>コンビニ等へ返送するだけで、レンタル終了までの手続きが自動的に進みます。</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:22px;">
+      <a class="btn btn-ghost" href="flow.html">詳しいご利用の流れを見る →</a>
+    </p>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">PLANS</p>
+        <h2>2種類のレンタルプラン</h2>
+      </div>
+    </div>
+    <div class="plan-grid">
+      <div class="plan-card plan-dark">
+        <h3>月額制プラン</h3>
+        <p class="sub">継続的なご利用におすすめ</p>
+        <ul>
+          <li>最低利用期間の縛りなし（商品による）</li>
+          <li>解約はいつでも0円</li>
+          <li>長期利用ほどお得</li>
+        </ul>
+      </div>
+      <div class="plan-card plan-light">
+        <h3>ワンタイムプラン</h3>
+        <p class="sub">一時的なご利用におすすめ</p>
+        <ul>
+          <li>最短1泊2日から利用可能</li>
+          <li>イベント・出張・季節利用に最適</li>
+          <li>利用日数分の明確な定額料金</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">VOICE</p>
+        <h2>お客様の声</h2>
+      </div>
+    </div>
+    <div class="reviews-layout">
+      <div class="rating-summary">
+        <div class="rating-big">4.4</div>
+        <div class="stars"></div>
+        <div class="rating-count" id="review-total-count"></div>
+        <div id="rating-bars"></div>
+      </div>
+      <div id="review-cards"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="kicker">FAQ</p>
+        <h2>よくあるご質問</h2>
+      </div>
+    </div>
+    <div class="accordion" id="faq-accordion"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h3>まずは気になる商品から、気軽にお試しを。</h3>
+        <p>初回特典で月額制プランが最大3ヶ月50%OFF。全国送料込み・返却送料無料です。</p>
+      </div>
+      <a class="btn btn-primary" href="#products">商品を見る</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="app.js"></script>
+<script>
+  mountChrome("");
+
+  document.querySelectorAll("[data-icon]").forEach(el => { el.innerHTML = ICONS[el.dataset.icon] || ""; });
+
+  // hero showcase mini cards
+  document.getElementById("hero-showcase").innerHTML = `
+    <div class="hero-blob" style="width:340px;height:340px;left:20px;top:10px;background:radial-gradient(circle at 30% 30%, #BDEDE7, #DFF8FC);opacity:.9;"></div>
+    <div class="hero-card hc-1"><div class="thumb" style="background:${CATEGORY_META["美容家電"].bgFrom};">${PRODUCT_ART.facial}</div><div><div class="name">RFエイジングケア美顔器</div><div class="price">月額 ¥1,740〜</div></div></div>
+    <div class="hero-card hc-2"><div class="thumb" style="background:${CATEGORY_META["掃除家電"].bgFrom};">${PRODUCT_ART.robot}</div><div><div class="name">水拭き+吸引ロボット掃除機</div><div class="price">月額 ¥3,180〜</div></div></div>
+    <div class="hero-card hc-3"><div class="thumb" style="background:${CATEGORY_META["キッチン家電"].bgFrom};">${PRODUCT_ART.coffee}</div><div><div class="name">全自動コーヒーメーカー</div><div class="price">月額 ¥2,480〜</div></div></div>
+  `;
+
+  // ---- product grid with category filter + search ----
+  const params = new URLSearchParams(location.search);
+  let activeCat = params.get("cat") ? categoryByKey(params.get("cat")) : null;
+  const query = (params.get("q") || "").trim().toLowerCase();
+
+  function buildChips() {
+    const cats = Object.keys(CATEGORY_META);
+    const chipsHTML = [`<button class="chip ${!activeCat ? "active" : ""}" data-cat="">すべて</button>`]
+      .concat(cats.map(c => `<button class="chip ${activeCat === c ? "active" : ""}" data-cat="${c}">${c}</button>`))
+      .join("");
+    document.getElementById("cat-chips").innerHTML = chipsHTML;
+    document.querySelectorAll("[data-cat]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeCat = btn.dataset.cat || null;
+        buildChips();
+        renderGrid();
+      });
+    });
+  }
+
+  function renderGrid() {
+    let list = PRODUCTS.slice();
+    if (activeCat) list = list.filter(p => p.category === activeCat);
+    if (query) list = list.filter(p => (p.name + p.category + p.tagline).toLowerCase().includes(query));
+
+    document.getElementById("lineup-title").textContent = query ? `「${query}」の検索結果` : (activeCat ? activeCat : "取扱商品");
+
+    if (list.length === 0) {
+      document.getElementById("product-grid").innerHTML = `<div class="empty-state" style="grid-column:1/-1;">該当する商品が見つかりませんでした。</div>`;
+      return;
+    }
+
+    document.getElementById("product-grid").innerHTML = list.map(p => {
+      const cat = CATEGORY_META[p.category];
+      const onSale = !!p.monthlySale;
+      return `
+      <a class="product-card" href="product.html?id=${p.id}">
+        <div class="product-thumb" style="background:linear-gradient(160deg, ${cat.bgFrom}, ${cat.bgTo});">
+          ${productBadgeHTML(p)}
+          <button class="wish-btn" type="button" onclick="event.preventDefault();this.classList.toggle('liked');">${ICONS.heart}</button>
+          ${PRODUCT_ART[p.id] || ""}
+        </div>
+        <div class="product-cat">${p.category}</div>
+        <p class="product-title">${p.name}</p>
+        <div class="product-rating">${starRow(p.rating)} ${p.rating}（${p.reviews}件）</div>
+        <div class="product-price-row">
+          ${onSale ? `<span class="product-price-was">${yen(p.monthly)}</span>` : ""}
+          <span class="product-price">${yen(onSale ? p.monthlySale : p.monthly)}<small>/月〜</small></span>
+        </div>
+        <button class="quick-add" data-quickadd="${p.id}">カートに追加</button>
+      </a>`;
+    }).join("");
+
+    document.querySelectorAll("[data-quickadd]").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const p = getProduct(btn.dataset.quickadd);
+        addToCart({
+          productId: p.id, name: p.name, icon: p.id,
+          planLabel: "月額制プラン", condition: "点検済みリユース品",
+          price: p.monthlySale || p.monthly, unit: "月額",
+        });
+        showToast("カートに追加しました");
+      });
+    });
+  }
+  buildChips();
+  renderGrid();
+
+  // ---- reviews summary (aggregate) ----
+  const allReviews = PRODUCTS.flatMap(p => (p.reviewsList || []).map(r => ({ ...r, productName: p.name })));
+  const totalBreakdown = [0,0,0,0,0];
+  PRODUCTS.forEach(p => p.ratingBreakdown.forEach((c,i) => totalBreakdown[i]+=c));
+  const totalCount = totalBreakdown.reduce((a,b)=>a+b,0);
+  document.querySelector(".rating-summary .stars").innerHTML = starRow(4.4);
+  document.getElementById("review-total-count").textContent = `全${totalCount.toLocaleString("ja-JP")}件のレビューによる平均`;
+  document.getElementById("rating-bars").innerHTML = ratingBarsHTML(totalBreakdown);
+  document.getElementById("review-cards").innerHTML = allReviews.slice(0,4).map(r => reviewCardHTML(r, r.productName)).join("");
+
+  // ---- FAQ ----
+  document.getElementById("faq-accordion").innerHTML = FAQS.map(f => `
+    <div class="accordion-item">
+      <div class="accordion-head"><span><span class="qmark">Q.</span>${f.q}</span>${ICONS.plus}</div>
+      <div class="accordion-body"><div class="accordion-body-inner">${f.a}</div></div>
+    </div>
+  `).join("");
+  initAccordions();
+</script>
+</body>
+</html>
