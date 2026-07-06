@@ -45,8 +45,8 @@
     if (cart.length === 0) {
       listEl.innerHTML = `<div class="empty-state">
         <p style="font-size:15px;font-weight:700;color:var(--dark);">カートは空です</p>
-        <p>商品一覧からレンタルしたい家電をお選びください。</p>
-        <a class="btn btn-primary" href="index.html">商品一覧を見る</a>
+        <p>製品一覧からレンタルしたい設備をお選びください。</p>
+        <a class="btn btn-primary" href="index.html">製品一覧を見る</a>
       </div>`;
       summaryEl.innerHTML = "";
       totalEl.textContent = "¥0";
@@ -69,12 +69,12 @@
       </div>`;
     }).join("");
 
-    let deliveryFee = cart.length * 480;
+    let deliveryFee = cart.length * 8800;
     let subtotal = cart.reduce((a, b) => a + b.price, 0);
     summaryEl.innerHTML = `
-      <div class="summary-row"><span>商品レンタル料金（${cart.length}点）</span><span>${yen(subtotal)}</span></div>
-      <div class="summary-row"><span>配送手数料</span><span>${yen(deliveryFee)}</span></div>
-      <div class="summary-row"><span>返却送料</span><span>無料</span></div>
+      <div class="summary-row"><span>装置レンタル料金（${cart.length}点）</span><span>${yen(subtotal)}</span></div>
+      <div class="summary-row"><span>配送・設置手数料</span><span>${yen(deliveryFee)}</span></div>
+      <div class="summary-row"><span>返却（引取）送料</span><span>無料</span></div>
     `;
     totalEl.textContent = yen(subtotal + deliveryFee);
     document.getElementById("checkout-btn").disabled = false;

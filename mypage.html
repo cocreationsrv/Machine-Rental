@@ -25,11 +25,11 @@
 
 <div id="return-modal" style="display:none;position:fixed;inset:0;background:rgba(11,61,66,.55);z-index:200;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:16px;padding:28px;max-width:380px;width:90%;text-align:center;">
-    <p class="step-badge">返却手続き</p>
-    <h3 style="margin:6px 0 10px;font-size:17px;">返却用バーコード</h3>
-    <p style="font-size:12.5px;color:var(--muted);margin:0 0 6px;">このバーコードをコンビニ・宅配ロッカーでご提示ください</p>
+    <p class="step-badge">返却（引取）手続き</p>
+    <h3 style="margin:6px 0 10px;font-size:17px;">回収受付コード</h3>
+    <p style="font-size:12.5px;color:var(--muted);margin:0 0 6px;">ご希望の回収日：最短2営業日後。訪問スタッフにこちらのコードをご提示ください</p>
     <div class="barcode"></div>
-    <p style="font-size:11px;color:var(--muted);">送り状の用意は不要です。返却送料は無料です。</p>
+    <p style="font-size:11px;color:var(--muted);">梱包・送り状の用意は不要です。引取送料は無料です。</p>
     <div style="display:flex;gap:10px;margin-top:16px;">
       <button class="btn btn-ghost" id="modal-cancel" style="flex:1;">閉じる</button>
       <button class="btn btn-primary" id="modal-confirm" style="flex:1;">返却手続きを完了する</button>
@@ -46,7 +46,7 @@
   let targetOrderId = null;
 
   function productIconOf(order) {
-    return order.icon || (getProduct(order.productId) || {}).id || "facial";
+    return order.icon || (getProduct(order.productId) || {}).id || "trb9020h";
   }
   function productCatBg(order) {
     const p = getProduct(order.productId);

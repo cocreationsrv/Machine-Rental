@@ -181,7 +181,7 @@
           ${price.was ? `<span class="pd-price-was">${yen(price.was)}</span>` : ""}
           <span class="pd-price">${yen(price.amount)}<small> / ${price.unit}</small></span>
           ${product.monthlySale && state.plan === "monthly" ? `<div style="font-size:11px;color:var(--sale);font-weight:700;margin-top:4px;">キャンペーン価格　${product.saleUntil}まで</div>` : ""}
-          <div style="font-size:11.5px;color:var(--muted);margin-top:6px;">配送手数料 480円（返却時送料無料）</div>
+          <div style="font-size:11.5px;color:var(--muted);margin-top:6px;">配送・設置手数料 8,800円（引取時送料無料）</div>
         </div>
 
         <div class="pd-plan-toggle">
@@ -189,7 +189,7 @@
             月額制プラン<small>${yen(product.monthlySale || product.monthly)} / 月〜</small>
           </div>
           <div class="toggle-btn ${state.plan === "onetime" ? "active" : ""}" data-plan="onetime">
-            ワンタイムプラン<small>${product.onetime ? yen(product.onetime) + " / " + product.onetimeNights : "選択できません"}</small>
+            短期レンタルプラン<small>${product.onetime ? yen(product.onetime) + " / " + product.onetimeNights : "選択できません"}</small>
           </div>
         </div>
 
@@ -200,7 +200,7 @@
         </div>` : ""}
 
         <div class="pd-note"><b>そのまま購入について：</b>レンタル期間中に気に入れば、マイページから追加料金をお支払いいただくだけでお手元の商品をそのままご購入いただけます（規定価格 − お支払済みレンタル料金相当分）。</div>
-        <div class="pd-note"><b>安心保証：</b>お客様に過失のない故障・破損は費用を一切請求しません。過失がある場合もご負担は都度上限2,000円までです。</div>
+        <div class="pd-note"><b>安心保証：</b>お客様に過失のない故障・破損は費用を一切請求しません。過失がある場合もご負担は都度上限20,000円までです。</div>
       </div>
       <div class="booking-widget">
         <div class="booking-card">
@@ -429,7 +429,7 @@
         productId: product.id,
         name: product.name,
         icon: product.id,
-        planLabel: state.plan === "monthly" ? "月額制プラン" : "ワンタイムプラン",
+        planLabel: state.plan === "monthly" ? "月額制プラン" : "短期レンタルプラン",
         condition: product.newAvailable ? (state.condition === "used" ? "点検済みリユース品" : "新品") : "点検済みリユース品",
         price: price.amount,
         unit: state.plan === "monthly" ? "月額" : product.onetimeNights,

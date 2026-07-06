@@ -27,9 +27,9 @@ const ICONS = {
 
 /* ---------------- category metadata ---------------- */
 const CATEGORY_META = {
-  "美容家電": { key: "beauty", bgFrom: "#FDEEF1", bgTo: "#F8D6DD", accent: "#C6798A" },
-  "キッチン家電": { key: "kitchen", bgFrom: "#FFF4E4", bgTo: "#FCE3C0", accent: "#C98A3E" },
-  "掃除家電": { key: "cleaning", bgFrom: "#E8F8F6", bgTo: "#CFEFEA", accent: "#028090" },
+  "人体用X線": { key: "human", bgFrom: "#EAF3FB", bgTo: "#CFE3F5", accent: "#2E6DA4" },
+  "小動物用X線": { key: "smallanimal", bgFrom: "#E8F8F6", bgTo: "#CFEFEA", accent: "#028090" },
+  "馬用X線": { key: "equine", bgFrom: "#FBF3E7", bgTo: "#F0DFC0", accent: "#A9762F" },
 };
 function categoryByKey(key) {
   return Object.keys(CATEGORY_META).find((c) => CATEGORY_META[c].key === key);
@@ -41,218 +41,246 @@ const PREF_EXTRA_DAYS = { "北海道": 1, "福岡県": 1 };
 
 /* ---------------- rich product illustrations ---------------- */
 const PRODUCT_ART = {
-  facial: `
+  trb9020h: `
   <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="gFacialBody" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#F6D2C2"/><stop offset="1" stop-color="#E3A08C"/>
+      <linearGradient id="gTrbBody" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#EDEFF1"/><stop offset="1" stop-color="#C7CDD2"/>
       </linearGradient>
-      <radialGradient id="gFacialHead" cx="0.35" cy="0.3" r="0.8">
-        <stop offset="0" stop-color="#F3CE7A"/><stop offset="1" stop-color="#C9932E"/>
+      <radialGradient id="gTrbLens" cx="0.35" cy="0.3" r="0.8">
+        <stop offset="0" stop-color="#5B7C8C"/><stop offset="1" stop-color="#1F3540"/>
       </radialGradient>
     </defs>
-    <ellipse cx="120" cy="213" rx="52" ry="9" fill="#0B3D42" opacity=".08"/>
-    <rect x="94" y="72" width="52" height="126" rx="26" fill="url(#gFacialBody)"/>
-    <rect x="108" y="150" width="24" height="9" rx="4.5" fill="#fff" opacity=".55"/>
-    <circle cx="120" cy="56" r="44" fill="url(#gFacialHead)"/>
-    <circle cx="120" cy="56" r="27" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="3"/>
-    <circle cx="120" cy="56" r="14" fill="#fff" fill-opacity=".3"/>
-    <ellipse cx="103" cy="42" rx="10" ry="6" fill="#fff" opacity=".35"/>
+    <ellipse cx="120" cy="214" rx="56" ry="9" fill="#0B3D42" opacity=".08"/>
+    <path d="M96 58 q24 -26 48 0" stroke="#8B979E" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <rect x="70" y="66" width="100" height="70" rx="16" fill="url(#gTrbBody)"/>
+    <rect x="82" y="80" width="34" height="20" rx="4" fill="#0B3D42"/>
+    <rect x="86" y="84" width="26" height="4" rx="2" fill="#02C39A"/>
+    <rect x="86" y="91" width="18" height="4" rx="2" fill="#5FD6C4" opacity=".7"/>
+    <rect x="126" y="82" width="30" height="4" rx="2" fill="#8B979E" opacity=".6"/>
+    <rect x="126" y="90" width="30" height="4" rx="2" fill="#8B979E" opacity=".6"/>
+    <rect x="126" y="98" width="30" height="4" rx="2" fill="#8B979E" opacity=".6"/>
+    <rect x="104" y="136" width="32" height="24" rx="6" fill="#9BA6AC"/>
+    <circle cx="120" cy="176" r="30" fill="url(#gTrbLens)"/>
+    <circle cx="120" cy="176" r="17" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="3"/>
+    <circle cx="120" cy="176" r="7" fill="#02C39A" fill-opacity=".85"/>
+    <path d="M170 120 q26 6 24 34" stroke="#8B979E" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>
   </svg>`,
-  dryer: `
+  atomscopexhu: `
   <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="gDryerBody" x1="0" y1="0" x2="1" y2="0.3">
-        <stop offset="0" stop-color="#FBFCFD"/><stop offset="1" stop-color="#D7DCDF"/>
+      <linearGradient id="gHuCase" x1="0" y1="0" x2="1" y2="0.4">
+        <stop offset="0" stop-color="#4A5560"/><stop offset="1" stop-color="#2C343B"/>
+      </linearGradient>
+      <linearGradient id="gHuPanel" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#DCE7EA"/><stop offset="1" stop-color="#B7C7CC"/>
       </linearGradient>
     </defs>
-    <ellipse cx="120" cy="214" rx="58" ry="9" fill="#0B3D42" opacity=".08"/>
-    <g transform="rotate(-10 120 110)">
-      <path d="M100 178 q-18 14 -4 30" stroke="#0B3D42" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"/>
-      <rect x="93" y="120" width="34" height="78" rx="16" fill="#028090"/>
-      <rect x="58" y="72" width="124" height="56" rx="28" fill="url(#gDryerBody)"/>
-      <path d="M178 84 h26 a10 10 0 0 1 10 10 v6 a10 10 0 0 1 -10 10 h-26 Z" fill="#8B979E"/>
-      <path d="M78 84 q10 16 0 32" stroke="#fff" stroke-width="3" fill="none" opacity=".7" stroke-linecap="round"/>
-      <path d="M92 80 q12 20 0 40" stroke="#fff" stroke-width="3" fill="none" opacity=".5" stroke-linecap="round"/>
-      <path d="M106 78 q12 22 0 44" stroke="#fff" stroke-width="3" fill="none" opacity=".35" stroke-linecap="round"/>
-    </g>
+    <ellipse cx="120" cy="216" rx="62" ry="9" fill="#0B3D42" opacity=".08"/>
+    <rect x="46" y="150" width="150" height="46" rx="10" fill="url(#gHuCase)"/>
+    <rect x="54" y="158" width="134" height="6" rx="3" fill="#5B6771" opacity=".7"/>
+    <rect x="60" y="46" width="86" height="106" rx="10" fill="url(#gHuPanel)" transform="rotate(-6 103 99)"/>
+    <rect x="70" y="58" width="66" height="82" rx="4" fill="#fff" fill-opacity=".35" transform="rotate(-6 103 99)"/>
+    <path d="M132 118 h56 l8 34 h-72 Z" fill="#2C343B"/>
+    <rect x="140" y="90" width="48" height="34" rx="4" fill="#0B3D42"/>
+    <rect x="145" y="95" width="38" height="24" rx="2" fill="#02C39A" fill-opacity=".8"/>
   </svg>`,
-  coffee: `
-  <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="120" cy="228" rx="60" ry="9" fill="#0B3D42" opacity=".08"/>
-    <path d="M96 32 q-5 10 0 20" stroke="#C9D3D4" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8"/>
-    <path d="M118 26 q-5 12 0 24" stroke="#C9D3D4" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8"/>
-    <path d="M140 32 q-5 10 0 20" stroke="#C9D3D4" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8"/>
-    <rect x="72" y="112" width="58" height="42" rx="8" fill="#454545"/>
-    <rect x="62" y="150" width="132" height="58" rx="13" fill="#333333"/>
-    <rect x="146" y="164" width="32" height="15" rx="3" fill="#02C39A"/>
-    <path d="M92 208 L100 234 Q120 244 143 234 L151 208 Z" fill="#A9DBDD" fill-opacity=".55" stroke="#84C2C6" stroke-width="2"/>
-    <path d="M99 214 L104 231 Q120 238 139 231 L144 214 Z" fill="#6F4E37"/>
-    <path d="M151 212 q16 4 11 20" stroke="#84C2C6" stroke-width="4" fill="none" stroke-linecap="round"/>
-  </svg>`,
-  blender: `
-  <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="120" cy="230" rx="58" ry="9" fill="#0B3D42" opacity=".08"/>
-    <rect x="88" y="44" width="62" height="20" rx="8" fill="#3A3A3A"/>
-    <path d="M84 62 L154 62 L140 176 Q120 190 98 176 Z" fill="#C3ECE8" fill-opacity=".6" stroke="#8FCFC9" stroke-width="2.5"/>
-    <line x1="93" y1="104" x2="145" y2="104" stroke="#8FCFC9" stroke-width="2.5" opacity=".7"/>
-    <line x1="96" y1="136" x2="142" y2="136" stroke="#8FCFC9" stroke-width="2.5" opacity=".7"/>
-    <path d="M110 168 l20 0 M120 158 l0 20" stroke="#616161" stroke-width="4.5" stroke-linecap="round"/>
-    <rect x="66" y="188" width="108" height="42" rx="13" fill="#3A3A3A"/>
-    <circle cx="150" cy="209" r="7" fill="#02C39A"/>
-    <circle cx="170" cy="209" r="7" fill="#F2B705"/>
-  </svg>`,
-  robot: `
+  hf200a: `
   <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <radialGradient id="gRobotBody" cx="0.35" cy="0.3" r="0.85">
-        <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCE4E4"/>
-      </radialGradient>
+      <linearGradient id="gHf200Body" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#F5F7F7"/><stop offset="1" stop-color="#D3DADC"/>
+      </linearGradient>
     </defs>
-    <ellipse cx="120" cy="212" rx="62" ry="10" fill="#0B3D42" opacity=".08"/>
-    <circle cx="120" cy="120" r="82" fill="url(#gRobotBody)" stroke="#B9C4C6" stroke-width="3"/>
-    <circle cx="120" cy="120" r="21" fill="#2B2F31"/>
-    <circle cx="120" cy="120" r="9" fill="#02C39A"/>
-    <circle cx="187" cy="150" r="11" fill="#EDF2F2" stroke="#B9C4C6" stroke-width="2"/>
-    <circle cx="90" cy="66" r="4.5" fill="#B9C4C6"/>
-    <circle cx="150" cy="66" r="4.5" fill="#B9C4C6"/>
-    <ellipse cx="93" cy="88" rx="36" ry="20" fill="#fff" fill-opacity=".4"/>
+    <ellipse cx="120" cy="222" rx="58" ry="9" fill="#0B3D42" opacity=".08"/>
+    <rect x="66" y="120" width="108" height="92" rx="14" fill="url(#gHf200Body)"/>
+    <rect x="80" y="134" width="80" height="26" rx="6" fill="#0B3D42"/>
+    <rect x="88" y="140" width="30" height="5" rx="2.5" fill="#02C39A"/>
+    <rect x="88" y="150" width="46" height="5" rx="2.5" fill="#8FCFC9" opacity=".7"/>
+    <circle cx="150" cy="147" r="8" fill="#02C39A" fill-opacity=".85"/>
+    <path d="M174 150 q34 -4 40 -54" stroke="#9BA6AC" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="214" cy="94" r="15" fill="#5B7C8C"/>
+    <circle cx="214" cy="94" r="7" fill="#02C39A" fill-opacity=".8"/>
+    <rect x="80" y="212" width="16" height="10" rx="3" fill="#8B979E"/>
+    <rect x="144" y="212" width="16" height="10" rx="3" fill="#8B979E"/>
+  </svg>`,
+  hf400va: `
+  <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gHf400Body" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#EFF3F3"/><stop offset="1" stop-color="#C7D1D3"/>
+      </linearGradient>
+    </defs>
+    <ellipse cx="120" cy="224" rx="64" ry="9" fill="#0B3D42" opacity=".08"/>
+    <rect x="54" y="88" width="132" height="128" rx="16" fill="url(#gHf400Body)"/>
+    <rect x="70" y="104" width="100" height="34" rx="7" fill="#0B3D42"/>
+    <rect x="80" y="112" width="40" height="6" rx="3" fill="#02C39A"/>
+    <rect x="80" y="124" width="60" height="6" rx="3" fill="#8FCFC9" opacity=".7"/>
+    <circle cx="150" cy="121" r="9" fill="#02C39A" fill-opacity=".85"/>
+    <rect x="70" y="150" width="100" height="46" rx="8" fill="#fff" fill-opacity=".4"/>
+    <line x1="80" y1="164" x2="160" y2="164" stroke="#8FCFC9" stroke-width="2.5" opacity=".6"/>
+    <line x1="80" y1="178" x2="150" y2="178" stroke="#8FCFC9" stroke-width="2.5" opacity=".6"/>
+    <rect x="90" y="216" width="18" height="10" rx="3" fill="#8B979E"/>
+    <rect x="132" y="216" width="18" height="10" rx="3" fill="#8B979E"/>
+  </svg>`,
+  atomscopexeq: `
+  <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gEqCase" x1="0" y1="0" x2="1" y2="0.4">
+        <stop offset="0" stop-color="#8A6A45"/><stop offset="1" stop-color="#5E4626"/>
+      </linearGradient>
+      <linearGradient id="gEqShoe" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#C79A5D"/><stop offset="1" stop-color="#8A6A45"/>
+      </linearGradient>
+    </defs>
+    <ellipse cx="120" cy="216" rx="60" ry="9" fill="#0B3D42" opacity=".08"/>
+    <path d="M88 44 L88 128 C88 160 172 160 172 128 L172 44"
+      fill="none" stroke="url(#gEqShoe)" stroke-width="26" stroke-linecap="round"/>
+    <circle cx="88" cy="58" r="5" fill="#4A2F1A"/>
+    <circle cx="172" cy="58" r="5" fill="#4A2F1A"/>
+    <circle cx="100" cy="150" r="5" fill="#4A2F1A"/>
+    <circle cx="160" cy="150" r="5" fill="#4A2F1A"/>
+    <rect x="66" y="176" width="108" height="40" rx="10" fill="url(#gEqCase)"/>
+    <rect x="76" y="184" width="88" height="6" rx="3" fill="#3E2E18" opacity=".6"/>
+    <rect x="104" y="164" width="32" height="16" rx="3" fill="#3E2E18"/>
   </svg>`,
 };
 
 /* ---------------- product catalogue ---------------- */
 const PRODUCTS = [
   {
-    id: "facial",
-    name: "RFエイジングケア美顔器 AURA RF-200",
-    tagline: "自宅で叶える、サロン級のハリケア",
-    category: "美容家電",
+    id: "trb9020h",
+    name: "ポータブルX線装置 ミカサ TRB9020H",
+    tagline: "訪問診療・災害医療の現場へ。国内最小最軽量クラス7.3kg",
+    category: "人体用X線",
     badge: "人気No.1",
-    rating: 4.6,
-    reviews: 128,
-    ratingBreakdown: [72, 34, 14, 5, 3],
-    monthly: 3480,
-    monthlySale: 1740,
+    rating: 4.7,
+    reviews: 86,
+    ratingBreakdown: [58, 18, 7, 2, 1],
+    monthly: 148000,
+    monthlySale: 98000,
     saleUntil: "7/13(月)",
-    onetime: 5980,
+    onetime: 42000,
     onetimeNights: "7泊8日",
     newAvailable: true,
-    desc: "RF（ラジオ波）とEMSで肌の引き締めケアができる美顔器です。10万円超の高額商品だからこそ、まず試してから決めたいというお声にお応えし、月額1,740円（キャンペーン価格）からレンタルできます。",
+    desc: "バッテリー内蔵で本体重量わずか7.3kg。訪問診療や病院の手術室・ICU、災害医療の現場など、電源のない場所でも高精細な撮影が可能なポータブルX線装置です。数百万円規模の高額機器だからこそ、まず現場で使用感を確かめてから導入をご検討いただけるよう、月額98,000円（キャンペーン価格）からレンタルをご用意しました。",
     specs: [
-      ["カテゴリー", "美容家電 / 美顔器"],
-      ["本体重量", "約320g"],
-      ["連続使用時間", "約30分（フル充電時）"],
-      ["充電時間", "約2時間"],
-      ["主な機能", "RF温感・EMS・LEDケア"],
-      ["付属品", "専用ポーチ、USB-C充電ケーブル"],
+      ["カテゴリー", "人体用X線装置 / ポータブル型"],
+      ["寸法・重量", "L340×W220×H192mm　7.3kg"],
+      ["出力・電源", "90kV 15mA 1sec 1,350W　DC57.6V（バッテリー駆動）"],
+      ["管電圧", "40kV-90kV（2kVステップ）"],
+      ["連続撮影", "1回の充電で約500回撮影可能（撮影条件により変動）"],
+      ["付属品", "バッテリー／充電器（ACアダプター付き）／ハンドスイッチ"],
     ],
     reviewsList: [
-      { name: "みさと様", date: "2026/06/28", rating: 5, tags: ["性能に満足しました", "また借りたいです"], text: "使い始めて2週間ですが肌のハリが違います。高くて買うのを迷っていたので、レンタルで試せて助かりました。" },
-      { name: "匿名様", date: "2026/06/20", rating: 4, tags: ["操作が簡単でした"], text: "操作はシンプルで迷わず使えました。もう少し連続使用時間が長いと嬉しいです。" },
+      { name: "訪問診療クリニック 医師", date: "2026/06/28", rating: 5, tags: ["性能に満足しました", "また借りたいです"], text: "7kg台の軽さで在宅患者様のお宅でもスムーズに撮影できました。導入前にレンタルで現場運用を確認できたのは大きな安心材料でした。" },
+      { name: "匿名（病院勤務）", date: "2026/06/15", rating: 4, tags: ["操作が簡単でした"], text: "バッテリー駆動なので停電時の訓練にも活用しています。もう少し連続撮影回数が多いとなお安心です。" },
     ],
   },
   {
-    id: "dryer",
-    name: "大風量マイナスイオンドライヤー AirFlow Pro",
-    tagline: "毎日の乾かす時間を、うるツヤ時間に",
-    category: "美容家電",
+    id: "atomscopexhu",
+    name: "X線診断システム AtomscopeX-HU",
+    tagline: "DRパネル・NRソフト・専用ケースを1セットに",
+    category: "人体用X線",
     badge: "NEW",
-    rating: 4.3,
-    reviews: 256,
-    ratingBreakdown: [130, 78, 32, 10, 6],
-    monthly: 1980,
-    onetime: 3480,
+    rating: 4.5,
+    reviews: 42,
+    ratingBreakdown: [24, 12, 4, 1, 1],
+    monthly: 168000,
+    onetime: 58000,
     onetimeNights: "5泊6日",
     newAvailable: true,
-    desc: "大風量とマイナスイオンで髪をいたわりながら時短乾燥。引っ越し・単身赴任・帰省時など「その時だけ」使いたい方にも人気のワンタイムプランもご用意しています。",
+    desc: "高い描出力を備えたDRパネルと、ディープラーニング技術による先進のノイズ低減処理「Intelligent NR」、耐衝撃のジェラルミンケースを組み合わせた専用セットです。ポータブルX線装置と組み合わせることで、訪問診療先や病院、災害現場でも確かな画像診断を実現します。",
     specs: [
-      ["カテゴリー", "美容家電 / ヘアドライヤー"],
-      ["本体重量", "約590g"],
-      ["風量", "大風量モード搭載"],
-      ["付属品", "セット用ノズル、収納ポーチ"],
-      ["主な機能", "マイナスイオン、温度切替"],
+      ["カテゴリー", "人体用X線装置 / デジタル診断システム"],
+      ["セット内容", "DRパネル＆保護ケース／NRソフト搭載パソコン／ジェラルミンケース"],
+      ["DRパネル", "CXDI-820CW／CXDI-403CW／CXDI-420CWよりお選びいただけます"],
+      ["ノイズ低減処理", "Intelligent NR（従来比 最大約50%のノイズ低減）"],
+      ["対応機器", "ポータブルX線装置 TRB9020Hほか"],
     ],
     reviewsList: [
-      { name: "匿名様", date: "2026/06/30", rating: 5, tags: ["コスパが良かったです", "また借りたいです"], text: "実家帰省の1週間だけ使いたくてワンタイムプランを利用。乾かす時間が半分になりました。" },
-      { name: "K.T様", date: "2026/06/11", rating: 4, tags: ["デザインが良かったです"], text: "見た目もスタイリッシュで気に入っています。音はそれなりにします。" },
+      { name: "救急病院 放射線技師", date: "2026/06/20", rating: 5, tags: ["画質に満足しました"], text: "Intelligent NRのおかげで少ない線量でも鮮明な画像が得られます。まずレンタルで自院の運用に合うか確認できて助かりました。" },
+      { name: "匿名（訪問診療）", date: "2026/06/05", rating: 4, tags: ["導入しやすかったです"], text: "専用ケースにまとめて収納できるので持ち運びがしやすいです。" },
     ],
   },
   {
-    id: "coffee",
-    name: "全自動コーヒーメーカー BeanRoad 700",
-    tagline: "豆から挽きたての一杯を、ボタンひとつで",
-    category: "キッチン家電",
-    badge: null,
-    rating: 4.5,
-    reviews: 98,
-    ratingBreakdown: [58, 26, 9, 3, 2],
-    monthly: 2480,
-    onetime: 4480,
+    id: "hf200a",
+    name: "動物用X線撮影装置 HF200A+GEN2",
+    tagline: "コンパクトボディで高出力。小動物診療のベストセラーモデル",
+    category: "小動物用X線",
+    badge: "人気",
+    rating: 4.6,
+    reviews: 134,
+    ratingBreakdown: [80, 34, 14, 4, 2],
+    monthly: 62000,
+    onetime: 24000,
     onetimeNights: "7泊8日",
     newAvailable: true,
-    desc: "豆挽きから抽出まで全自動。毎朝のコーヒーをワンタッチで。買う前に自宅のキッチンに合うか試したい方におすすめです。",
+    desc: "犬・猫などの小動物診療に最適化された、コンパクトボディながら高出力な動物用X線撮影装置です。照射機と操作パネルが一体型で院内スペースを有効活用でき、開業準備中の動物病院様や繁忙期の増設用としてもご好評をいただいています。",
     specs: [
-      ["カテゴリー", "キッチン家電 / コーヒーメーカー"],
-      ["タンク容量", "約0.6L"],
-      ["抽出方式", "全自動ミル内蔵ドリップ式"],
-      ["お手入れ", "パーツ取り外し丸洗い対応"],
-      ["主な機能", "豆・粉両対応、保温機能"],
+      ["カテゴリー", "動物医療用X線装置 / 小動物用"],
+      ["寸法・重量", "L400×W290×H230mm　16.2kg"],
+      ["出力・電源", "AC 単相交流100V　3kVA"],
+      ["管電圧", "30kV-100kV（2kVステップ）"],
+      ["タイマー", "0.01-2.00sec"],
+      ["付属品", "電源コード／ハンドスイッチ／露出スイッチとコード"],
     ],
     reviewsList: [
-      { name: "コーヒー好き様", date: "2026/06/24", rating: 5, tags: ["性能に満足しました", "コスパが良かったです"], text: "豆から挽ける全自動タイプを試せて大満足。購入前に試せるのは本当にありがたいです。" },
-      { name: "匿名様", date: "2026/06/02", rating: 4, tags: ["お手入れが簡単でした"], text: "パーツが外して洗えるので清潔に使えました。音は少し大きめです。" },
+      { name: "動物病院 院長", date: "2026/07/02", rating: 5, tags: ["性能に満足しました", "また借りたいです"], text: "開業前にレンタルで実機を試せたのは大きな決め手になりました。パネルタッチで操作も簡単です。" },
+      { name: "匿名（動物病院勤務）", date: "2026/06/18", rating: 4, tags: ["コンパクトです"], text: "省スペースで診察室に置いても圧迫感がありません。繁忙期の増設用に重宝しています。" },
     ],
   },
   {
-    id: "blender",
-    name: "高性能ブレンダー・ミキサー PowerMix S",
-    tagline: "凍った果物もなめらかに、あっという間",
-    category: "キッチン家電",
+    id: "hf400va",
+    name: "動物用X線撮影装置 HF400VA",
+    tagline: "高出力・大型ボディで院内の本格運用に",
+    category: "小動物用X線",
     badge: null,
-    rating: 4.2,
-    reviews: 74,
-    ratingBreakdown: [36, 22, 10, 4, 2],
-    monthly: 1680,
-    onetime: 2980,
+    rating: 4.3,
+    reviews: 51,
+    ratingBreakdown: [24, 16, 7, 3, 1],
+    monthly: 78000,
+    onetime: 28000,
     onetimeNights: "5泊6日",
     newAvailable: false,
-    desc: "スムージーや離乳食作りに便利な高出力ブレンダー。短期利用や来客時のみのご利用にもワンタイムプランで柔軟に対応します。",
+    desc: "30kV〜120kVの幅広い管電圧に対応する高出力モデル。中大型の動物病院や複数診療科での本格運用にも対応します。改装期間中の代替機や、繁忙期の一時増強用としてもご利用いただけます。",
     specs: [
-      ["カテゴリー", "キッチン家電 / ブレンダー"],
-      ["容量", "約600ml"],
-      ["刃素材", "ステンレス4枚刃"],
-      ["対応食材", "氷・冷凍フルーツ対応"],
-      ["主な機能", "パルス機能、自動停止"],
+      ["カテゴリー", "動物医療用X線装置 / 小動物用（大型）"],
+      ["寸法・重量", "L430×W340×H240mm　21.8kg"],
+      ["出力・電源", "単相交流200V　4kVA 50/60Hz"],
+      ["管電圧", "30-120kV（2kVステップ）"],
+      ["管電流", "28mA-100mA"],
+      ["付属品", "電源ケーブル(6m)／フットスイッチ"],
     ],
     reviewsList: [
-      { name: "匿名様", date: "2026/06/15", rating: 4, tags: ["性能に満足しました"], text: "冷凍フルーツもしっかり砕けました。離乳食作りにも重宝しています。" },
-      { name: "M.S様", date: "2026/05/29", rating: 4, tags: ["また借りたいです"], text: "来客時だけ使いたかったのでワンタイムプランがちょうど良かったです。" },
+      { name: "匿名（動物病院勤務）", date: "2026/06/10", rating: 4, tags: ["高出力で安心"], text: "大型犬の撮影でも十分な出力で助かっています。改装工事中の代替機として利用しました。" },
+      { name: "動物病院 事務", date: "2026/05/22", rating: 4, tags: ["導入がスムーズでした"], text: "レンタルなので繁忙期だけ台数を増やせて便利でした。" },
     ],
   },
   {
-    id: "robot",
-    name: "水拭き+吸引ロボット掃除機 CleanBot X2",
-    tagline: "吸引も水拭きも、あなたが家にいない間に",
-    category: "掃除家電",
-    badge: "人気",
-    rating: 4.1,
-    reviews: 341,
-    ratingBreakdown: [150, 95, 55, 25, 16],
-    monthly: 3180,
+    id: "atomscopexeq",
+    name: "馬用X線診断システム AtomscopeX-EQ",
+    tagline: "競馬場・厩舎での診断に必要なすべてを、ひとつに",
+    category: "馬用X線",
+    badge: null,
+    rating: 4.8,
+    reviews: 19,
+    ratingBreakdown: [16, 2, 1, 0, 0],
+    monthly: 135000,
     onetime: null,
     onetimeNights: null,
     newAvailable: true,
-    desc: "吸引と水拭きを1台でこなすロボット掃除機。高額な人気機種だからこそ、購入前に使用感を確かめられる月額制プランをご用意しました。",
+    desc: "高い描出力を備えたDRパネル、Intelligent NRによるノイズ低減処理、耐衝撃のジェラルミンケースを組み合わせた馬用の専用セットです。競馬場や厩舎など、競走馬の診断が求められる現場に確かな画像診断をお届けします。継続的なご利用を想定し、月額制プランのみのご提供です。",
     specs: [
-      ["カテゴリー", "掃除家電 / ロボット掃除機"],
-      ["本体寸法", "約33cm×8cm"],
-      ["本体重量", "約2.8kg"],
-      ["充電時間", "約4時間"],
-      ["主な機能", "アプリ連携、水拭き＋吸引"],
+      ["カテゴリー", "動物医療用X線装置 / 馬用"],
+      ["セット内容", "DRパネル＆保護ケース／NRソフト搭載パソコン／ジェラルミンケース"],
+      ["DRパネル", "CXDI-820CW／CXDI-403CW／CXDI-420CWよりお選びいただけます"],
+      ["ノイズ低減処理", "Intelligent NR（従来比 最大約50%のノイズ低減）"],
+      ["ご利用シーン", "競馬場・厩舎での定期診断、遠征先での臨時撮影"],
     ],
     reviewsList: [
-      { name: "つまみ様", date: "2026/07/04", rating: 5, tags: ["性能に満足しました", "また借りたいです"], text: "今までのものとは段違いに静かでスムースに掃除が出来て大変満足しています。" },
-      { name: "匿名様", date: "2026/07/01", rating: 4, tags: ["コスパが良かったです"], text: "床が綺麗になって満足。アプリ連携がもう少しスムーズだと嬉しいです。" },
+      { name: "競走馬診療所 獣医師", date: "2026/06/25", rating: 5, tags: ["性能に満足しました", "また借りたいです"], text: "厩舎への持ち運びもしやすく、画質も申し分ありません。遠征先での臨時撮影にも対応できて助かっています。" },
+      { name: "匿名（競馬場勤務）", date: "2026/05/30", rating: 5, tags: ["導入しやすかったです"], text: "高額な機材のため購入前にレンタルで運用を確認できたのがありがたかったです。" },
     ],
   },
 ];
@@ -315,12 +343,12 @@ function productBadgeHTML(p) {
 
 /* ---------------- FAQ data ---------------- */
 const FAQS = [
-  { q: "レンタル料金はいくらですか？", a: "商品によって異なりますが、月額1,680円〜ご利用いただけます。各商品ページで月額制プラン／ワンタイムプランの料金をご確認いただけます。" },
-  { q: "最短・最長のレンタル期間はありますか？", a: "ワンタイムプランは最短1泊2日から、月額制プランは最低利用期間の縛りなくご利用いただけます（商品による）。" },
-  { q: "レンタルした商品はいつ届きますか？", a: "在庫がある場合、最短で翌日にお届けします。配送手数料は全国一律480円です。" },
-  { q: "商品が故障・破損した場合はどうなりますか？", a: "お客様に過失のない故障・破損は費用を一切請求しません。過失がある場合もご負担は都度上限2,000円までです。" },
-  { q: "気に入った商品はそのまま購入できますか？", a: "はい。レンタル期間中に気に入れば、マイページから追加料金をお支払いいただくだけでそのままご購入いただけます。" },
-  { q: "返却方法を教えてください。", a: "マイページに表示される専用バーコードをコンビニ・宅配ロッカーでご提示いただくだけで返却できます。送り状の準備は不要、返却送料も無料です。" },
+  { q: "レンタル料金はいくらですか？", a: "商品によって異なりますが、月額62,000円〜ご利用いただけます。各商品ページで月額制プラン／短期レンタルプランの料金をご確認いただけます。" },
+  { q: "最短・最長のレンタル期間はありますか？", a: "短期レンタルプランは最短5泊6日から、月額制プランは最低利用期間の縛りなくご利用いただけます（商品による）。" },
+  { q: "レンタルした装置はいつ届きますか？", a: "在庫がある場合、最短で翌日に設置員がお届け・設置いたします。配送・設置手数料は全国一律8,800円です。" },
+  { q: "装置が故障・破損した場合はどうなりますか？", a: "お客様に過失のない故障・破損は費用を一切請求しません。過失がある場合もご負担は都度上限20,000円までです。" },
+  { q: "気に入った装置はそのまま購入できますか？", a: "はい。レンタル期間中に気に入れば、マイページから追加料金をお支払いいただくだけでそのままご購入いただけます。" },
+  { q: "返却方法を教えてください。", a: "マイページから回収希望日を選ぶだけで、スタッフが指定日にご自宅・院内まで引き取りに伺います。梱包・送り状のご用意は不要、引取送料も無料です。" },
 ];
 
 /* ---------------- header / footer chrome ---------------- */
@@ -346,11 +374,11 @@ function headerHTML(active) {
       </a>
       <nav class="main-nav">
         <div class="nav-item has-dropdown">
-          <span>商品一覧 ${ICONS.chevronDown}</span>
+          <span>製品一覧 ${ICONS.chevronDown}</span>
           <div class="dropdown">
-            <a href="index.html?cat=beauty">美容家電</a>
-            <a href="index.html?cat=kitchen">キッチン家電</a>
-            <a href="index.html?cat=cleaning">掃除家電</a>
+            <a href="index.html?cat=human">人体用X線</a>
+            <a href="index.html?cat=smallanimal">小動物用X線</a>
+            <a href="index.html?cat=equine">馬用X線</a>
           </div>
         </div>
         ${nav("flow.html", "ご利用の流れ", "flow")}
@@ -386,18 +414,18 @@ function footerHTML() {
       <div class="footer-grid">
         <div>
           <a class="logo footer-logo" href="index.html"><span class="logo-mark">共</span><span class="logo-word">共創レンタル</span></a>
-          <p class="footer-desc">美容家電・キッチン家電・掃除家電のレンタル／サブスクサービス。買う前に試せる、新しい家電体験を。</p>
+          <p class="footer-desc">医療用・動物用X線装置のレンタル／リースサービス。導入前に現場で試せる、新しい設備調達のかたち。</p>
           <div class="footer-social">
             <span class="social-dot">X</span><span class="social-dot">IG</span><span class="social-dot">FB</span>
           </div>
         </div>
         <div>
-          <h5>ショップ</h5>
+          <h5>製品</h5>
           <ul>
-            <li><a href="index.html">商品一覧</a></li>
-            <li><a href="index.html?cat=beauty">美容家電</a></li>
-            <li><a href="index.html?cat=kitchen">キッチン家電</a></li>
-            <li><a href="index.html?cat=cleaning">掃除家電</a></li>
+            <li><a href="index.html">製品一覧</a></li>
+            <li><a href="index.html?cat=human">人体用X線</a></li>
+            <li><a href="index.html?cat=smallanimal">小動物用X線</a></li>
+            <li><a href="index.html?cat=equine">馬用X線</a></li>
           </ul>
         </div>
         <div>
@@ -515,9 +543,9 @@ function seedOrderIfEmpty() {
   if (orders.length === 0) {
     orders.push({
       id: "KS-240610-0001",
-      productId: "facial",
+      productId: "trb9020h",
       planLabel: "月額制プラン",
-      price: 1740,
+      price: 98000,
       status: "using",
       orderedAt: "2026-06-10",
     });
