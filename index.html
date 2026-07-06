@@ -164,9 +164,9 @@
   // hero showcase mini cards
   document.getElementById("hero-showcase").innerHTML = `
     <div class="hero-blob" style="width:340px;height:340px;left:20px;top:10px;background:radial-gradient(circle at 30% 30%, #BDEDE7, #DFF8FC);opacity:.9;"></div>
-    <div class="hero-card hc-1"><div class="thumb" style="background:${CATEGORY_META["人体用X線"].bgFrom};">${PRODUCT_ART.trb9020h}</div><div><div class="name">ポータブルX線装置 TRB9020H</div><div class="price">月額 ¥98,000〜</div></div></div>
-    <div class="hero-card hc-2"><div class="thumb" style="background:${CATEGORY_META["馬用X線"].bgFrom};">${PRODUCT_ART.atomscopexeq}</div><div><div class="name">馬用X線診断システム</div><div class="price">月額 ¥135,000〜</div></div></div>
-    <div class="hero-card hc-3"><div class="thumb" style="background:${CATEGORY_META["小動物用X線"].bgFrom};">${PRODUCT_ART.hf200a}</div><div><div class="name">動物用X線撮影装置 HF200A</div><div class="price">月額 ¥62,000〜</div></div></div>
+    <div class="hero-card hc-1"><div class="thumb" style="background:${CATEGORY_META["人体用X線"].bgFrom};">${productImgHTML("trb9020h")}</div><div><div class="name">ポータブルX線装置 TRB9020H</div><div class="price">月額 ¥98,000〜</div></div></div>
+    <div class="hero-card hc-2"><div class="thumb" style="background:${CATEGORY_META["馬用X線"].bgFrom};">${productImgHTML("atomscopexeq")}</div><div><div class="name">馬用X線診断システム</div><div class="price">月額 ¥135,000〜</div></div></div>
+    <div class="hero-card hc-3"><div class="thumb" style="background:${CATEGORY_META["小動物用X線"].bgFrom};">${productImgHTML("hf200a")}</div><div><div class="name">動物用X線撮影装置 HF200A</div><div class="price">月額 ¥62,000〜</div></div></div>
   `;
 
   // ---- product grid with category filter + search ----
@@ -209,7 +209,7 @@
         <div class="product-thumb" style="background:linear-gradient(160deg, ${cat.bgFrom}, ${cat.bgTo});">
           ${productBadgeHTML(p)}
           <button class="wish-btn" type="button" onclick="event.preventDefault();this.classList.toggle('liked');">${ICONS.heart}</button>
-          ${PRODUCT_ART[p.id] || ""}
+          ${productImgHTML(p.id, p.name)}
         </div>
         <div class="product-cat">${p.category}</div>
         <p class="product-title">${p.name}</p>

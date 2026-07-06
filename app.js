@@ -146,6 +146,20 @@ const PRODUCT_ART = {
   </svg>`,
 };
 
+/* ---------------- real product photography (ミカサエックスレイ株式会社 公式製品写真) ---------------- */
+const PRODUCT_IMG = {
+  trb9020h: "images/index_pic_trb9020h_pc.jpg",
+  hf200a: "images/index_pic_hf200va_pc.jpg",
+  hf400va: "images/index_pic_hf400va_pc.jpg",
+  atomscopexeq: "images/index_pic_atomscopex-eq.jpg",
+  atomscopexsa: "images/index_pic_atomscopex-sa.jpg",
+};
+function productImgHTML(id, alt) {
+  const src = PRODUCT_IMG[id];
+  if (!src) return PRODUCT_ART[id] || "";
+  return `<img src="${src}" alt="${alt || id}" loading="lazy">`;
+}
+
 /* ---------------- product catalogue ---------------- */
 const PRODUCTS = [
   {
@@ -178,29 +192,29 @@ const PRODUCTS = [
     ],
   },
   {
-    id: "atomscopexhu",
-    name: "X線診断システム AtomscopeX-HU",
-    tagline: "DRパネル・NRソフト・専用ケースを1セットに",
-    category: "人体用X線",
+    id: "atomscopexsa",
+    name: "小動物用X線診断システム AtomscopeX-SA",
+    tagline: "動物病院の撮影・診断環境を、このセットひとつで",
+    category: "小動物用X線",
     badge: "NEW",
-    rating: 4.5,
-    reviews: 42,
-    ratingBreakdown: [24, 12, 4, 1, 1],
+    rating: 4.6,
+    reviews: 33,
+    ratingBreakdown: [20, 9, 3, 1, 0],
     monthly: 168000,
     onetime: 58000,
     onetimeNights: "5泊6日",
     newAvailable: true,
-    desc: "高い描出力を備えたDRパネルと、ディープラーニング技術による先進のノイズ低減処理「Intelligent NR」、耐衝撃のジェラルミンケースを組み合わせた専用セットです。ポータブルX線装置と組み合わせることで、訪問診療先や病院、災害現場でも確かな画像診断を実現します。",
+    desc: "高い描出力を備えたDRパネル、ディープラーニング技術による先進のノイズ低減処理「Intelligent NR」、耐衝撃のジェラルミンケース、そして専用スタンドを組み合わせた小動物向けの撮影・診断セットです。犬・猫をはじめとする小動物の診療に、撮影直後の画像確認までを1台でサポートします。",
     specs: [
-      ["カテゴリー", "人体用X線装置 / デジタル診断システム"],
-      ["セット内容", "DRパネル＆保護ケース／NRソフト搭載パソコン／ジェラルミンケース"],
+      ["カテゴリー", "動物医療用X線装置 / 小動物用 診断システム"],
+      ["セット内容", "DRパネル＆保護ケース／NRソフト搭載パソコン／ジェラルミンケース／専用スタンド"],
       ["DRパネル", "CXDI-820CW／CXDI-403CW／CXDI-420CWよりお選びいただけます"],
       ["ノイズ低減処理", "Intelligent NR（従来比 最大約50%のノイズ低減）"],
-      ["対応機器", "ポータブルX線装置 TRB9020Hほか"],
+      ["対応機器", "動物用X線撮影装置 HF200A+GEN2、HF400VAほか"],
     ],
     reviewsList: [
-      { name: "救急病院 放射線技師", date: "2026/06/20", rating: 5, tags: ["画質に満足しました"], text: "Intelligent NRのおかげで少ない線量でも鮮明な画像が得られます。まずレンタルで自院の運用に合うか確認できて助かりました。" },
-      { name: "匿名（訪問診療）", date: "2026/06/05", rating: 4, tags: ["導入しやすかったです"], text: "専用ケースにまとめて収納できるので持ち運びがしやすいです。" },
+      { name: "動物病院 院長", date: "2026/06/22", rating: 5, tags: ["性能に満足しました", "また借りたいです"], text: "撮影後すぐにスタンドのモニターで画像確認ができ、診療がスムーズになりました。導入前にレンタルで使用感を確かめられたのも良かったです。" },
+      { name: "匿名（動物病院勤務）", date: "2026/06/08", rating: 4, tags: ["導入しやすかったです"], text: "スタンド一体型なので設置もシンプルでした。" },
     ],
   },
   {

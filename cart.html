@@ -59,7 +59,7 @@
       const cat = p ? CATEGORY_META[p.category] : null;
       return `
       <div class="cart-row">
-        <div class="thumb" style="background:${cat ? cat.bgFrom : "var(--cardbg)"};">${PRODUCT_ART[item.icon] || ""}</div>
+        <div class="thumb" style="background:${cat ? cat.bgFrom : "var(--cardbg)"};">${productImgHTML(item.icon, item.name)}</div>
         <div class="grow">
           <div class="name">${item.name}</div>
           <div class="meta">${item.planLabel}　/　${item.condition}${item.deliveryDate ? `　/　お届け予定日 ${item.deliveryDate}` : ""}</div>

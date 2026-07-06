@@ -64,8 +64,8 @@
       <div class="order-card">
         <div class="head">
           <div style="display:flex;align-items:center;gap:12px;">
-            <div class="thumb" style="width:48px;height:48px;border-radius:10px;background:${productCatBg(o)};display:flex;align-items:center;justify-content:center;">
-              <div style="width:78%;height:78%;">${PRODUCT_ART[productIconOf(o)] || ""}</div>
+            <div class="thumb" style="width:48px;height:48px;border-radius:10px;background:${productCatBg(o)};display:flex;align-items:center;justify-content:center;overflow:hidden;">
+              ${productImgHTML(productIconOf(o), o.name)}
             </div>
             <div>
               <div style="font-weight:700;font-size:14px;">${o.name || (getProduct(o.productId) || {}).name || "商品"}</div>

@@ -165,10 +165,10 @@
     document.getElementById("pd-root").innerHTML = `
       <div>
         <div class="pd-gallery-main" style="background:linear-gradient(160deg, ${cat.bgFrom}, ${cat.bgTo});">
-          ${PRODUCT_ART[product.id]}
+          ${productImgHTML(product.id, product.name)}
         </div>
         <div class="pd-thumbs">
-          ${[0,1,2,3].map(i => `<div class="pd-thumb ${i===0?"active":""}" data-thumb="${i}" style="background:${cat.bgFrom};">${PRODUCT_ART[product.id]}</div>`).join("")}
+          ${[0,1,2,3].map(i => `<div class="pd-thumb ${i===0?"active":""}" data-thumb="${i}" style="background:${cat.bgFrom};">${productImgHTML(product.id, product.name)}</div>`).join("")}
         </div>
       </div>
       <div>
@@ -319,7 +319,7 @@
     <a class="product-card" href="product.html?id=${p.id}">
       <div class="product-thumb" style="background:linear-gradient(160deg, ${cat.bgFrom}, ${cat.bgTo});">
         ${productBadgeHTML(p)}
-        ${PRODUCT_ART[p.id]}
+        ${productImgHTML(p.id, p.name)}
       </div>
       <div class="product-cat">${p.category}</div>
       <p class="product-title">${p.name}</p>

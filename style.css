@@ -130,8 +130,9 @@ svg{display:block;}
   position:absolute;background:#fff;border-radius:18px;box-shadow:0 20px 44px rgba(11,61,66,.16);
   padding:16px;display:flex;align-items:center;gap:12px;
 }
-.hero-card .thumb{width:52px;height:52px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;}
+.hero-card .thumb{width:52px;height:52px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .hero-card .thumb svg{width:100%;height:100%;}
+.hero-card .thumb img{width:100%;height:100%;object-fit:contain;}
 .hero-card .name{font-size:12px;font-weight:700;color:var(--dark);max-width:130px;}
 .hero-card .price{font-size:13px;font-weight:800;color:var(--primary);}
 .hc-1{top:8px;left:24px;width:230px;animation:floatY 5s ease-in-out infinite;}
@@ -174,6 +175,7 @@ svg{display:block;}
   display:flex;align-items:center;justify-content:center;margin-bottom:12px;position:relative;overflow:hidden;
 }
 .product-thumb svg{width:72%;height:72%;filter:drop-shadow(0 10px 14px rgba(11,61,66,.14));}
+.product-thumb img{width:100%;height:100%;object-fit:cover;}
 .wish-btn{
   position:absolute;top:9px;right:9px;width:30px;height:30px;border-radius:50%;background:#fff;
   display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(11,61,66,.14);border:none;
@@ -295,10 +297,12 @@ svg{display:block;}
 .pd-grid{display:grid;grid-template-columns:.72fr .95fr .85fr;gap:32px;align-items:start;}
 .pd-gallery-main{border-radius:18px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .pd-gallery-main svg{width:58%;height:58%;filter:drop-shadow(0 16px 22px rgba(11,61,66,.16));}
+.pd-gallery-main img{width:100%;height:100%;object-fit:cover;}
 .pd-thumbs{display:flex;gap:10px;margin-top:12px;}
 .pd-thumb{width:64px;height:64px;border-radius:10px;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;padding:8px;}
 .pd-thumb.active{border-color:var(--primary);}
 .pd-thumb svg{width:100%;height:100%;}
+.pd-thumb img{width:100%;height:100%;object-fit:cover;border-radius:4px;}
 .pd-badges{display:flex;gap:8px;margin-bottom:10px;}
 .pd-tagline{font-size:13px;color:var(--secondary);font-weight:700;margin:0 0 6px;}
 .pd-title{font-size:22px;margin:0 0 8px;color:var(--dark);}
@@ -342,8 +346,10 @@ svg{display:block;}
 
 /* ---------- cart / mypage ---------- */
 .cart-row{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;}
-.cart-row .thumb{width:64px;height:64px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none;}
+.cart-row .thumb{width:64px;height:64px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden;}
 .cart-row .thumb svg{width:82%;height:82%;}
+.cart-row .thumb img{width:100%;height:100%;object-fit:cover;}
+.order-card .thumb img{width:100%;height:100%;object-fit:cover;}
 .cart-row .grow{flex:1;}
 .cart-row .name{font-weight:700;font-size:14px;}
 .cart-row .meta{font-size:12px;color:var(--muted);margin-top:3px;}
